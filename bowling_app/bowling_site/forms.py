@@ -1,23 +1,27 @@
 from django import forms
-from .models import Customer
+from .models import Bowler
 
 
-class CustomerForm(forms.ModelForm):
-    class Meta:
-        model = Customer
-        fields = [
-            'first',
-            'middle',
-            'last',
-            'birthdate',
-            'gender',
-            'email',
-            'username',
-            'password',
-        ]
+# class BowlerForm(forms.ModelForm):
+#     class Meta:
+#         model = Bowler
+#         fields = [
+#             'first',
+#             'middle',
+#             'last',
+#             'birthdate',
+#             'gender',
+#             'address',
+#             'city',
+#             'state',
+#             'zipcode',
+#             'email',
+#             'username',
+#             'password',
+#         ]
 
 
-class RawCustomerForm(forms.Form):
+class BowlerForm(forms.Form):
     first = forms.CharField()
     middle = forms.CharField(required=False)
     last = forms.CharField()
@@ -30,9 +34,11 @@ class RawCustomerForm(forms.Form):
     email = forms.EmailField()
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+    avg = forms.IntegerField()
+    hdcp = forms.IntegerField()
 
 
-class RawContactForm(forms.Form):
+class ContactForm(forms.Form):
     name = forms.CharField()
     email = forms.EmailField()
     message = forms.CharField()

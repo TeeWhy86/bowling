@@ -1,7 +1,7 @@
 /*BODY*/
 
 body {
-    /*    background-image: url(clouds.jpg);*/
+        background-color: brown;
 }
 
 
@@ -45,6 +45,12 @@ section form article p {
     padding: 5px;
 }
 
+
+/*FORM*/
+
+form div {
+    float: left;
+}
 
 /*DIV*/
 

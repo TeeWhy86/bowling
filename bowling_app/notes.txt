@@ -1,0 +1,7 @@
+venv_bowling\scripts\activate
+cd bowling
+cd bowling_app
+
+
+admin username: ty
+password: i

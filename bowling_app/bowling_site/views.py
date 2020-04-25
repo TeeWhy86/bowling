@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .forms import RawCustomerForm, RawContactForm
-from .models import Customer, Contact
+from .forms import BowlerForm, ContactForm
+from .models import Bowler, Contact
 
 # Create your views here.
 
@@ -32,9 +32,9 @@ def bowling_site_about(request):
 
 
 def bowling_site_contact(request):
-    my_form = RawContactForm()
+    my_form = ContactForm()
     if request.method == "POST":
-        my_form = RawContactForm(request.POST)
+        my_form = ContactForm(request.POST)
         if my_form.is_valid():
             print(my_form.cleaned_data)
             Contact.objects.create(**my_form.cleaned_data)
@@ -60,16 +60,22 @@ def bowling_site_wip(request):
     return render(request, "WIP.html")
 
 
-def bowling_site_reg(request):
-    my_form = RawCustomerForm()
+def create_bowler(request):
+    form = BowlerForm()
+    form1 = ContactForm()
     if request.method == "POST":
-        my_form = RawCustomerForm(request.POST)
-        if my_form.is_valid():
-            print(my_form.cleaned_data)
-            Customer.objects.create(**my_form.cleaned_data)
+        form = BowlerForm(request.POST)
+        form1 = ContactForm(request.POST)
+        if form.is_valid() & form1.is_valid():
+            print(form.cleaned_data)
+            print(form1.cleaned_data)
+            Bowler.objects.create(**form.cleaned_data)
+            Contact.objects.create(**form1.cleaned_data)
         else:
-            print(my_form.errors)
+            print(form.errors)
+            print(form1.errors)
     context = {
-        'form': my_form
+        'form': form,
+        'form1': form1
     }
-    return render(request, "bowling_site/customer_register.html", context)
+    return render(request, "bowling_site/bowler_form.html", context)

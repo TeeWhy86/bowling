@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'RegistrationCSS.css' %}">
+{#{% block mycss %}<style>#}
+{#    form div {#}
+{#        float: right;#}
+{#    }#}
+{#</style>#}
+{#{% endblock %}#}
+
+
+{% block content %}
+    <form method="POST">{% csrf_token %}
+        <div>{{ form.as_p }}
+        </div>
+        <br>
+        <br>
+        <div>{{ form1.as_p }}
+        </div>
+        <input type="submit" value="Save" />
+    </form>
+{% endblock %}
