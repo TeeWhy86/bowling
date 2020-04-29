@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'crispy_forms',
 
     # my own
-    'bowling_site'
+    'bowling_site',
 ]
 
 MIDDLEWARE = [
@@ -129,5 +130,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'bowling_site/static/bowling_site/css'),
 ]
-# STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static/bowling_site')
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'bowling_app/bowling_site/assets/')
 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap'

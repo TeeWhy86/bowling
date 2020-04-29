@@ -40,32 +40,20 @@ section h2 {
     text-align: center;
 }
 
-#art1 {
-    background: skyblue;
-    height: auto;
-    font-size: 20px;
-}
-
-#art2 {
-    background: black;
-    height: auto;
-    font-size: 20px;
-}
 
 
 /*DIV*/
 
-#divL {
-    float: left;
-    text-align: left;
-    bottom: 0;
-}
+/*#divL {*/
+/*    float: left;*/
+/*    text-align: left;*/
+/*    bottom: 0;*/
+/*}*/
 
-#divC {
-    text-align: center;
-    bottom: 0;
-}
-
+/*#divC {*/
+/*    text-align: center;*/
+/*    bottom: 0;*/
+/*}*/
 
 /*LINKS*/
 

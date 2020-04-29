@@ -1,106 +1,75 @@
-<!DOCTYPE html>
-<html>
-{% load static %}
-   <link rel="stylesheet" type="text/css" href="{% static 'RegistrationCSS.css' %}">
-<title>Bowlers Bliss</title>
-
-<body>
-
-    <header>
-        <h1>
-            Bowler's Bliss
-        </h1>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a>Bowlers</a></li>
-            <li><a>Alleys</a></li>
-            <li><a>Gear</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/contact">Contact Us</a></li>
-        </ul>
-    </nav>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <section>
-        <h2>Login Form</h2>
-        <form>
-            <article>
-                <p>
-                    Username<br>
-                    <input type="text" name="username" value="">
-                </p>
-                <p>
-                    Password<br>
-                    <input type="text" name="password" value="">
-                </p>
-                <br>
-                <p>
-                    <a href="/wip">Forgot Password?</a>
-                </p>
-            </article>
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+{% extends 'base.html' %}
 
 
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+{% block content %}
+
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+
+        <input type="submit" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+{#     Assumes you setup the password_reset view in your URLconf #}
+{#    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
+
+{% endblock %}
+
+{#{% block content %}#}
+{#    {% load static %}#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'Login.css' %}">#}
+{##}
+{#    <section>#}
+{#            <h2>Login Form</h2>#}
+{#            <form>#}
+{#                <article>#}
+{#                    <p>#}
+{#                        Username<br>#}
+{#                        <input type="text" name="username" value="">#}
+{#                    </p>#}
+{#                    <p>#}
+{#                        Password<br>#}
+{#                        <input type="text" name="password" value="">#}
+{#                    </p>#}
+{#                    <br>#}
+{#                    <p>#}
+{#                        <a href="/wip">Forgot Password?</a>#}
+{#                    </p>#}
+{#                </article>#}
+{##}
+{#                <br>#}
+{##}
+{##}
+{##}
+{#                <input type="submit" value="Submit" />#}
+{#                <input type="reset" value="Reset" />#}
+{##}
+{#            </form>#}
+{#        </section>#}
+{##}
+{#{% endblock %}#}
 
 
-
-            <input type="submit" value="Submit" />
-            <input type="reset" value="Reset" />
-
-        </form>
-    </section>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
-
-
-    <div id="divL">
-        <b>Bowler's Bliss</b>
-        <br>
-
-        <li id="link2">
-            <a href="/wip">Site Map</a> | <a href="/wip">Terms & Conditions</a> | <a href="/wip">Privacy Policy</a> | <a href="/about">About Us</a></li>
-    </div>
-
-    <div id="divC">
-        @ 2020 All Rights Reserved
-    </div>
-
-
-</body>
-    
-    
-    
-    
-</html>

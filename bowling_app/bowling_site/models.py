@@ -10,6 +10,12 @@ class League(models.Model):
     house = models.CharField(max_length=120, null=True, help_text='Home Alley')
     lanes = models.IntegerField(null=True)
 
+    class Meta:
+        ordering = ['name']
+
+        def __str__(self):
+            return self.name
+
 
 class Bowler(models.Model):
     first = models.CharField(max_length=60)
@@ -24,27 +30,46 @@ class Bowler(models.Model):
     email = models.EmailField()
     username = models.CharField(max_length=60)
     password = models.CharField(max_length=60)
-    avg = models.IntegerField()
-    hdcp = models.IntegerField()
+    avg = models.IntegerField(null=True)
+    hdcp = models.IntegerField(null=True)
 
-    # def __unicode__(self):
+    class Meta:
+        ordering = ['last']
+
+        def __str__(self):
+            return self.first, self.last
+
+
+# def __unicode__(self):
     #     return u'%s %s' % (self.first, self.last)
 
 
 class Team(models.Model):
     name = models.CharField(max_length=120)
-    avg = models.FloatField()
-    hdcp = models.FloatField()
+    avg = models.FloatField(null=True)
+    hdcp = models.FloatField(null=True)
     bowler = models.ManyToManyField(Bowler, name="Bowler(s)")
     # bowler2 = models.OneToOneField(Bowler, on_delete=models.CASCADE)
     # bowler3 = models.OneToOneField(Bowler, on_delete=models.CASCADE)
     # bowler4 = models.OneToOneField(Bowler, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['name']
+
+        def __str__(self):
+            return self.name
 
 
 class Contact(models.Model):
     name = models.CharField(max_length=120)
     email = models.EmailField()
     message = models.TextField(max_length=255)
+
+    class Meta:
+        ordering = ['name']
+
+        def __str__(self):
+            return self.name
 
 
 class Stat(models.Model):
@@ -56,3 +81,6 @@ class Stat(models.Model):
     total = models.IntegerField()
     avg = models.FloatField()
     hdcp = models.FloatField()
+
+    class Meta:
+        ordering = ['teamid']
